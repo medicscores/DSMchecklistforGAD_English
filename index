@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAD DSM-5-TR Checklist</title>
+  <style>
+    body { max-width: 1150px; width:  100%; margin: 0 auto; background: linear-gradient(180deg, #F8FAFF 0%, #F7F8FA 100%); color:var(--muted); }
+    h1 { font-family: Verdana; font-size: 20px; color: #545454; margin: 0; padding-top: 20px; }
+    h2 { font-family: Verdana; font-size: 35px; color: #333333; margin: 0; padding-bottom: 10px; }
+    h3 { font-family: Helvetica; border-bottom: 2px solid #444; padding-bottom: 5px; font-size: 25px; }
+    .section {
+      margin-bottom: 20px; }
+    .textbox1 { display: block;  box-sizing: border-box;  border-radius:8px; margin-top: 5px; background-color: #f38383; color: #F8FAFF; font-family: Trebuchet MS; font-size: 15px; padding: 12px 8px; margin-bottom: 5px; width: 100%; box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); }
+    .textbox2 { display: block;  box-sizing: border-box; border-radius:8px; margin-top: 15px; background-color: #8CA3D2; color: #F8FAFF; font-family: Trebuchet MS; font-size: 15px; padding: 12px 8px; margin-bottom: 5px; width: 100%; box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 5px;
+      font-weight: bold; font-family: Verdana; font-size: 16px; }
+    .pass { background-color: #f8d7da; color: #721c24; }
+    .fail { background-color: #e6e6e6; color: #000000; }
+    .warn { background-color: #fff3cd; color: #856404; }
+    
+     button{
+    padding:10px 14px;
+    border-radius:10px;
+    border:0; 
+    cursor:pointer;
+    background: #8CA3D2;
+    color:white;
+    font-weight:600; font-size: 16px; box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);  }
+    
+    button:hover{background-color: white ; color: #595959; }
+
+.banner {
+  background-color: #8CA3D2;  
+  color: white;
+  display: flex; flex-direction: column; width: 100%; 
+  align-items: center; text-align: center;
+  justify-content: center;
+  padding: 10px; height: 150px;  }
+
+.banner img {
+  height: 120px; margin-bottom: 0; }
+
+.banner span { font-size: 18px; font-family: Helvetica; }
+
+</style>
+</head>
+<body>
+
+<div class="banner">
+<img src="MEDIC SCORES.png" alt="Medic Scores Logo"><p>Validated multilingual medical calculators, scores, and health information for Malaysians.</p></div>
+
+<h1>DSM-5-TR Checklist for</h1>
+<h2>Generalized Anxiety Disorder</h2>
+
+<div class="textbox1"><strong>IMPORTANT:</strong><br>A thorough assessment and sound clinical judgment are essential before making a final diagnosis.</strong></div>
+<div class="textbox2"><strong>INSTRUCTION:</strong><br>Please tick the box that applies.</strong></div>
+
+<div class="section">
+  <h3>Duration of Symptoms</h3>
+  <label><input type="checkbox" id="duration">
+    At least 6 months
+  </label>
+</div>
+
+<div class="section">
+  <h3>Criterion A</h3>
+  <label><input type="checkbox" id="A">
+    Excessive anxiety and worry occurring more days than not
+  </label>
+</div>
+
+<div class="section">
+  <h3>Criterion B</h3>
+  <label><input type="checkbox" id="B">
+    Difficulty controlling the worry
+  </label>
+</div>
+
+<div class="section">
+  <h3>Criterion C – Associated Symptoms</h3>
+  <label><input type="checkbox" class="symptom"> Restlessness or feeling on edge</label><br>
+  <label><input type="checkbox" class="symptom"> Easily fatigued</label><br>
+  <label><input type="checkbox" class="symptom"> Difficulty concentrating or mind going blank</label><br>
+  <label><input type="checkbox" class="symptom"> Irritability</label><br>
+  <label><input type="checkbox" class="symptom"> Muscle tension</label><br>
+  <label><input type="checkbox" class="symptom"> Sleep disturbance</label>
+</div>
+
+<div class="section">
+  <h3>Criterion D</h3>
+  <label><input type="checkbox" id="D">
+    Clinically significant distress or functional impairment in social, occupational, or other important areas of functioning
+  </label>
+</div>
+
+<div class="section">
+  <h3>Criterion E</h3>
+  <label><input type="checkbox" id="E">
+    Not due to substance (e.g., drug, medication) or medical condition (e.g., hyperthyroidism)
+  </label>
+</div>
+
+<div class="section">
+  <h3>Criterion F</h3>
+  <label><input type="checkbox" id="F">
+    Not better explained by another mental disorder
+  </label>
+</div>
+
+<button onclick="calculateResult()">Submit</button>
+
+<div id="resultBox" class="result"></div>
+
+<p><strong>References:</strong><br>American Psychiatric Association. (2022). Diagnostic and statistical manual of mental disorders (5th ed., text rev.). American Psychiatric Association Publishing.</p>
+
+<script>
+function calculateResult() {
+  const duration = document.getElementById("duration").checked;
+  const A = document.getElementById("A").checked;
+  const B = document.getElementById("B").checked;
+  const D = document.getElementById("D").checked;
+  const E = document.getElementById("E").checked;
+  const F = document.getElementById("F").checked;
+
+  const symptoms = document.querySelectorAll(".symptom:checked").length;
+
+  const resultBox = document.getElementById("resultBox");
+
+  if (duration && A && B && symptoms >= 3 && D && E && F) {
+    resultBox.className = "result pass";
+    resultBox.innerHTML = "Meets DSM-5-TR criteria for <strong>Generalized Anxiety Disorder</strong>.";
+  } else if (!duration || !A || !B || symptoms < 3) {
+    resultBox.className = "result warn";
+    resultBox.innerHTML = "Criteria partially met. <strong>Further clinical assessment required.</strong>";
+  } else {
+    resultBox.className = "result warn";
+    resultBox.innerHTML = "Criteria partially met. <strong>Further clinical assessment required.</strong>";
+  }
+}
+</script>
+<br>
+<br>
+</body>
+</html>
