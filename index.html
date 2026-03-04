@@ -135,7 +135,7 @@ function calculateResult() {
 
   if (duration && A && B && symptoms >= 3 && D && E && F) {
     resultBox.className = "result pass";
-    resultBox.innerHTML = "Meets DSM-5-TR criteria for <strong>Generalized Anxiety Disorder</strong>.";
+    resultBox.innerHTML = "DSM-5-TR criteria for <strong>Generalized Anxiety Disorder</strong> are fulfilled.";
   } else if (!duration || !A || !B || symptoms < 3) {
     resultBox.className = "result warn";
     resultBox.innerHTML = "Criteria partially met. <strong>Further clinical assessment required.</strong>";
@@ -149,6 +149,7 @@ function calculateResult() {
 <br>
 </body>
 </html>
+
 
 
 
