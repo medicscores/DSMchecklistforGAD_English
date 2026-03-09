@@ -146,10 +146,10 @@ function calculateResult() {
     resultBox.innerHTML = "DSM-5-TR criteria for <strong>Generalized Anxiety Disorder</strong> are fulfilled.";
   } else if (!duration || !A || !B || symptoms < 3) {
     resultBox.className = "result warn";
-    resultBox.innerHTML = "Criteria partially met. <strong>Further clinical assessment required.</strong>";
+    resultBox.innerHTML = "Criteria NOT met. <strong>Further clinical assessment required.</strong>";
   } else {
     resultBox.className = "result warn";
-    resultBox.innerHTML = "Criteria partially met. <strong>Further clinical assessment required.</strong>";
+    resultBox.innerHTML = "Criteria NOT met. <strong>Further clinical assessment required.</strong>";
   }
 }
 </script>
@@ -157,6 +157,7 @@ function calculateResult() {
 <br>
 </body>
 </html>
+
 
 
 
